@@ -8,14 +8,28 @@ export class ItemsComponent {
   addedItem = '';
   addedDate = '';
 
-  newItem = '';
-  newDate = '';
+  items = [''];
+  dates = [''];
+
+  totalItems = 0;
 
   addToFridge() {
-    this.newItem = this.addedItem;
-    this.newDate = this.addedDate;
+    if (this.totalItems == 0) {
+      this.addItem();
+    }
+    for (var i = 0; i < this.items.length; i++) {
+      console.log(this.items[i]);
+    }
   }
   addItem() {
-    document.append("<input type='text' [(ngModel)]='addedItem'><input type='date' [(ngModel)]='addedDate'><button> Delete </button>");
+    this.totalItems++;
+    this.items.push(this.addedItem);
+    this.dates.push(this.addedDate);
+  }
+
+  deleteItem() {
+    this.totalItems--;
+    this.items.pop();
+    this.dates.pop();
   }
 }

@@ -1,8 +1,10 @@
 <h2>Add some items </h2>
-<input type="text" [(ngModel)]="addedItem">
+<div *ngFor='let item of items'>
+<input type="text" [(ngModel)]="addedItem" [attr.name] = "item">
 <input type="date" [(ngModel)]="addedDate">
-<button> Delete </button>
+<button (click)='deleteItem()'> Delete </button>
 <hr>
+</div>
 <button (click)="addItem()">Add Another Item</button>
 <button (click)="addToFridge()">Add to Fridge</button>
-<p>{{ newItem }}</p> <p>{{ newDate }}</p>
+<p>{{ addedItem }}</p> <p>{{ addedDate }}</p>
