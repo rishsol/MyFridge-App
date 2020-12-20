@@ -1,35 +1,29 @@
 import { Component } from '@angular/core';
+import { Form } from '../model/form';
 
 @Component({
   selector: 'app-items',
-  templateUrl: './items.component.html'
+  templateUrl: './items.component.html',
+  styleUrls: ['./items.component.css']
 })
 export class ItemsComponent {
-  addedItem = '';
-  addedDate = '';
+  form = new Form();
+  formData = [];
 
-  items = [''];
-  dates = [''];
-
-  totalItems = 0;
+  ngOnInit() {
+    this.form = new Form();
+    this.formData.push(this.form);
+  }
 
   addToFridge() {
-    if (this.totalItems == 0) {
-      this.addItem();
-    }
-    for (var i = 0; i < this.items.length; i++) {
-      console.log(this.items[i]);
-    }
+    console.log(this.formData);
   }
-  addItem() {
-    this.totalItems++;
-    this.items.push(this.addedItem);
-    this.dates.push(this.addedDate);
+  addForm() {
+    this.form = new Form();
+    this.formData.push(this.form);
   }
 
-  deleteItem() {
-    this.totalItems--;
-    this.items.pop();
-    this.dates.pop();
+  removeForm(i: any) {
+    this.formData.splice(i, 1);
   }
 }
