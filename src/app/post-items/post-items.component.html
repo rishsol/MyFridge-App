@@ -1,0 +1,10 @@
+<table style="width:100%">
+  <tr class='headers' *ngIf="itemsList.length != 0">
+    <th>Item</th>
+    <th>Expiration Date</th>
+  </tr>
+  <tr *ngFor="let obj of itemsList">
+    <td>obj.item</td>
+    <td>obj.expDate</td>
+  </tr>
+</table>

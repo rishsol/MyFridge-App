@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Form } from '../model/form';
 
 @Component({
@@ -9,6 +9,7 @@ import { Form } from '../model/form';
 export class ItemsComponent {
   form = new Form();
   formData = [];
+  @Output() itemSubmitted = new EventEmitter();
 
   ngOnInit() {
     this.form = new Form();
