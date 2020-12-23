@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, Output } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Form } from '../model/form';
+import { ItemService } from '../post-items/item.service';
 
 //(ngSubmit)="addToFridge()"
 
@@ -11,21 +13,25 @@ import { Form } from '../model/form';
 export class ItemsComponent {
   form = new Form();
   formData: Form[] = [];
-  @Output() itemSubmitted = new EventEmitter<Form[]>();
+
+  constructor (public itemService: ItemService) {}
 
   ngOnInit() {
     this.form = new Form();
     this.formData.push(this.form);
   }
 
-  addToFridge() {
+  addToFridge(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
     const fridgeItems: Form[] = [];
     for (let obj of this.formData) {
       if (obj.item != undefined || obj.item != undefined) {
         fridgeItems.push({item: obj.item, expDate: obj.expDate});
       }
     }
-    this.itemSubmitted.emit(fridgeItems);
+    this.itemService.addItem(fridgeItems);
   }
   addForm() {
     this.form = new Form();
