@@ -1,2 +1,5 @@
 <app-header> </app-header>
-<app-items></app-items>
+<main>
+  <app-items (itemSubmitted)="addToFridge($event)"></app-items>
+  <app-post-items [allItems]="fridgeItems"></app-post-items>
+</main>

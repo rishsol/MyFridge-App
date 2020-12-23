@@ -1,5 +1,5 @@
 <h2>Add some items </h2>
-<form (ngSubmit)="addToFridge()">
+<form>
   <div class='container'>
     <div class='form-row' *ngFor='let obj of formData; let i = index'>
       <div class='group'>
@@ -17,6 +17,6 @@
       </div>
     </div>
     <button mat-raised-button class='add' (click)='addForm()' color='accent'> Add Another</button>
-    <button mat-raised-button class='submit' color='primary'> Submit </button>
+    <button mat-raised-button class='submit' (click)='addToFridge()' color='primary'> Submit </button>
   </div>
 </form>

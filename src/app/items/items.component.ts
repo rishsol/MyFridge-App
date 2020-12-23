@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Form } from '../model/form';
 
+//(ngSubmit)="addToFridge()"
+
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
@@ -8,8 +10,8 @@ import { Form } from '../model/form';
 })
 export class ItemsComponent {
   form = new Form();
-  formData = [];
-  @Output() itemSubmitted = new EventEmitter();
+  formData: Form[] = [];
+  @Output() itemSubmitted = new EventEmitter<Form[]>();
 
   ngOnInit() {
     this.form = new Form();
@@ -17,7 +19,13 @@ export class ItemsComponent {
   }
 
   addToFridge() {
-    console.log(this.formData);
+    const fridgeItems: Form[] = [];
+    for (let obj of this.formData) {
+      if (obj.item != undefined || obj.item != undefined) {
+        fridgeItems.push({item: obj.item, expDate: obj.expDate});
+      }
+    }
+    this.itemSubmitted.emit(fridgeItems);
   }
   addForm() {
     this.form = new Form();

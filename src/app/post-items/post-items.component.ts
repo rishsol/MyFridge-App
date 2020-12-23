@@ -1,4 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
+import { ItemsComponent } from '../items/items.component';
+import { Form } from '../model/form';
 
 @Component({
   selector: 'app-post-items',
@@ -6,5 +8,5 @@ import { Component } from "@angular/core";
   styleUrls: ['./post-items.component.css']
 })
 export class PostItemsComponent {
-  itemsList = [];
+  @Input() allItems: Form[] = [];
 }
