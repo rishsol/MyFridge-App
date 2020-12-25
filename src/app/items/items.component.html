@@ -15,10 +15,10 @@
       </div>
 
       <div class='group' *ngIf='i != 0'>
-        <button mat-raised-button (click)='removeForm(i)' color='warn'>Delete</button>
+        <button mat-raised-button (click)='removeForm(i)' color='warn' #deleteButton>Delete</button>
       </div>
     </div>
-    <button mat-raised-button class='add' (click)='addForm()' color='accent'> Add Another</button>
-    <button mat-raised-button type='submit' class='submit' color='primary'> Submit </button>
+    <button name='addAnother' mat-raised-button class='add' (click)='addForm()' [disabled]='click' color='accent' #addAnotherButton> Add Another</button>
+    <button mat-raised-button type='submit' class='submit' color='primary' #submitButton> Submit </button>
   </div>
 </form>

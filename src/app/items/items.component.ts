@@ -1,5 +1,6 @@
 import { Component, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatButton } from '@angular/material/button';
 import { Form } from '../model/form';
 import { ItemService } from '../post-items/item.service';
 
@@ -13,6 +14,7 @@ import { ItemService } from '../post-items/item.service';
 export class ItemsComponent {
   form = new Form();
   formData: Form[] = [];
+  click: boolean = false;
 
   constructor (public itemService: ItemService) {}
 
@@ -31,6 +33,7 @@ export class ItemsComponent {
         fridgeItems.push({item: obj.item, expDate: obj.expDate});
       }
     }
+    this.click = !this.click;
     this.itemService.addItem(fridgeItems);
   }
   addForm() {
