@@ -19,7 +19,7 @@ export class PostItemsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.allItems = this.itemService.getItems();
+    this.itemService.getItems();
     this.itemSub = this.itemService.getItemsUpdatedListener()
       .subscribe((items: Form[]) => {
         this.allItems = items;
