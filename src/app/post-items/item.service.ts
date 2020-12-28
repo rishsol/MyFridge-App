@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Form } from '../model/form'
-import { Subject } from 'rxjs';
+import { pairs, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -25,7 +25,10 @@ export class ItemService {
   }
 
   addItem(fridgeItems: Form[]) {
-    this.items = fridgeItems;
-    this.itemsUpdated.next([...this.items]);
+    this.http.post('http://localhost:3000/items', fridgeItems)
+      .subscribe((responseData) => {
+        this.items = fridgeItems;
+        this.itemsUpdated.next([...this.items]);
+      });
   }
 }

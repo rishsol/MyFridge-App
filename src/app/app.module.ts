@@ -10,7 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { PostItemsComponent } from './post-items/post-items.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
-import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import { HttpClient } from '@angular/common/http';
     MatButtonModule,
     MatToolbarModule,
     MatInputModule,
-    HttpClient
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

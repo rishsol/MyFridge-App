@@ -4,8 +4,6 @@ import { MatButton } from '@angular/material/button';
 import { Form } from '../model/form';
 import { ItemService } from '../post-items/item.service';
 
-//(ngSubmit)="addToFridge()"
-
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
@@ -34,6 +32,7 @@ export class ItemsComponent {
       }
     }
     this.click = !this.click;
+    //[disabled]='click'
     this.itemService.addItem(fridgeItems);
   }
   addForm() {
