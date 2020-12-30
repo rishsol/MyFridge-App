@@ -1,6 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const Item = require('./models/items');
+
 const app = express();
+
+mongoose.connect('mongodb+srv://rishsol:Gb3tpm6uXjGs9fF@cluster0.lqzuy.mongodb.net/MyFridge?retryWrites=true&w=majority')
+  .then(() => {
+    console.log('connected to mongodb');
+  });
 
 app.use(bodyParser.json());
 
@@ -16,7 +24,16 @@ app.use((req, res, next) => {
 });
 
 app.post('/items', (req, res, next) => {
-  const posts = req.body;
+  const items = []
+  for (let obj of req.body) {
+    items.push(new Item({
+      item: obj.item,
+      expDate: obj.expDate
+    }));
+  }
+  for (let item of items) {
+    item.save();
+  }
   res.status(201).json();
 })
 
