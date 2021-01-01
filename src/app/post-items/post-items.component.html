@@ -3,8 +3,9 @@
     <th>Item</th>
     <th>Expiration Date</th>
   </tr>
-  <tr *ngFor="let obj of allItems">
-    <td>{{ obj.item }} </td>
-    <td>{{ obj.expDate }} </td>
+  <tr *ngFor="let obj of allItems; let i = index">
+      <td>{{ obj.item }} </td>
+      <td>{{ obj.expDate }} </td>
+      <td> <button mat-raised-button color='warn' (click)="deleteItem(obj.id, i)" #deleteButton>X</button> </td>
   </tr>
 </table>

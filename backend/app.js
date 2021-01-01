@@ -5,7 +5,7 @@ const Item = require('./models/items');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://rishsol:Gb3tpm6uXjGs9fF@cluster0.lqzuy.mongodb.net/MyFridge?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://rishsol:Gb3tpm6uXjGs9fF@cluster0.lqzuy.mongodb.net/MyFridge?retryWrites=true&w=majority', { useNewUrlParser: true })
   .then(() => {
     console.log('connected to mongodb');
   });
@@ -37,10 +37,18 @@ app.post('/items', (req, res, next) => {
   res.status(201).json();
 })
 
-app.use('/items', (req, res, next) => {
-  const items = [];
-  res.status(200).json({
-    items: items
+app.get('/items', (req, res, next) => {
+  Item.find().then(documents => {
+    res.status(200).json({
+      items: documents
+    });
+  });
+});
+
+app.delete('/items/:id', (req, res, next) => {
+  Item.deleteOne({_id: req.params.id}).then(result => {
+    console.log(result);
+    res.status(200).json({ message: 'deleted item'});
   });
 });
 

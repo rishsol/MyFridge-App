@@ -18,6 +18,12 @@ export class PostItemsComponent implements OnInit, OnDestroy {
     this.itemService = itemService;
   }
 
+  deleteItem(itemID: any, i: any) {
+    this.itemService.deleteItem(itemID);
+    this.allItems.splice(i, 1);
+    //name='pair{{i}}'
+  }
+
   ngOnInit() {
     this.itemService.getItems();
     this.itemSub = this.itemService.getItemsUpdatedListener()
