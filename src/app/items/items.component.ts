@@ -27,7 +27,7 @@ export class ItemsComponent {
     }
     const fridgeItems: Form[] = [];
     for (let obj of this.formData) {
-      if (obj.item != undefined || obj.item != undefined) {
+      if (obj.item != undefined && obj.item != undefined) {
         fridgeItems.push({id: null, item: obj.item, expDate: obj.expDate});
       }
     }

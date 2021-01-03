@@ -37,7 +37,7 @@ export class ItemService {
   addItem(fridgeItems: Form[]) {
     this.http.post('http://localhost:3000/items', fridgeItems)
       .subscribe((responseData) => {
-        this.items = fridgeItems;
+        this.items.push.apply(this.items, fridgeItems);
         this.itemsUpdated.next([...this.items]);
       });
   }
@@ -45,8 +45,8 @@ export class ItemService {
   deleteItem(itemId: string) {
     this.http.delete('http://localhost:3000/items/' + itemId)
       .subscribe(() => {
-        console.log('item deleted');
-        console.log(itemId);
+        this.items = this.items.filter(item => item.id !== itemId);
+        this.itemsUpdated.next([...this.items]);
       });
   }
 }
