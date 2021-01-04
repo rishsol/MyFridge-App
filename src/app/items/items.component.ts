@@ -1,8 +1,10 @@
 import { Component, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Form } from '../model/form';
 import { ItemService } from '../post-items/item.service';
+import { PostItemsComponent } from '../post-items/post-items.component';
 
 @Component({
   selector: 'app-items',
@@ -14,7 +16,7 @@ export class ItemsComponent {
   formData: Form[] = [];
   click: boolean = false;
 
-  constructor (public itemService: ItemService) {}
+  constructor (public itemService: ItemService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.form = new Form();
@@ -34,6 +36,8 @@ export class ItemsComponent {
     this.click = !this.click;
     //[disabled]='click'
     this.itemService.addItem(fridgeItems);
+    this.router.navigate(['/items'])
+
   }
   addForm() {
     this.form = new Form();

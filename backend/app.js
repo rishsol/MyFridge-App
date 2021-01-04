@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Item = require('./models/items');
+const { ExpectedConditions } = require('protractor');
 
 const app = express();
 
@@ -32,10 +33,10 @@ app.post('/items', (req, res, next) => {
     }));
   }
   for (let item of items) {
-    item.save();
+    item.save()
   }
   res.status(201).json();
-})
+});
 
 app.get('/items', (req, res, next) => {
   Item.find().then(documents => {

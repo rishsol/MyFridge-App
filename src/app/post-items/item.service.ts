@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Form } from '../model/form'
-import { pairs, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-
 
 @Injectable({providedIn: 'root'})
 export class ItemService {
   private items: Form[] = [];
   private itemsUpdated = new Subject();
 
-  constructor(private http: HttpClient) {}
+  constructor (private http: HttpClient) {}
 
   getItems() {
     //return [...this.items];
@@ -26,6 +25,7 @@ export class ItemService {
       }))
       .subscribe(items => {
         this.items = items;
+        this.items.sort((a, b) => a.expDate > b.expDate ? 1 : -1);
         this.itemsUpdated.next([...this.items]);
       });
   }
@@ -37,9 +37,10 @@ export class ItemService {
   addItem(fridgeItems: Form[]) {
     this.http.post('http://localhost:3000/items', fridgeItems)
       .subscribe((responseData) => {
-        this.items.push.apply(this.items, fridgeItems);
-        this.itemsUpdated.next([...this.items]);
-      });
+
+      this.items.push.apply(this.items, fridgeItems);
+      this.itemsUpdated.next([...this.items]);
+    });
   }
 
   deleteItem(itemId: string) {
