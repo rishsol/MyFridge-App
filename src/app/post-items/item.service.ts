@@ -47,6 +47,12 @@ export class ItemService {
     });
   }
 
+  updateItem(id: string, item: string, expDate: string) {
+    const updatedItem: Form = {id: id, item: item, expDate: expDate};
+    this.http.put('http://localhost:3000/items/' + id, updatedItem)
+    .subscribe(res => console.log(res));
+  }
+
   deleteItem(itemId: string) {
     this.http.delete('http://localhost:3000/items/' + itemId)
       .subscribe(() => {

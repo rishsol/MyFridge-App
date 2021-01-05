@@ -1,0 +1,17 @@
+<h2>Update your item </h2>
+<form (submit)='updateItem(itemsForm)' #itemsForm='ngForm'>
+  <div class='container'>
+      <div class='group'>
+        <label> Item </label>
+        <input matInput type="text" name='item' id='itemInput' ngModel #item='ngModel' required class='form-control'>
+        <mat-error *ngIf="item.invalid && item.touched">Update Item</mat-error>
+      </div>
+
+      <div class='group'>
+        <label> Expiration Date </label>
+        <input matInput type="date" name='date' id='itemExpDate' ngModel #date='ngModel' required class='form-control'>
+        <mat-error *ngIf="date.invalid && date.touched">Update Date</mat-error>
+      </div>
+    <button mat-raised-button type='submit' class='submit' color='primary' #submitButton> Update </button>
+  </div>
+</form>

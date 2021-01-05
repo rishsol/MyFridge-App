@@ -20,7 +20,7 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers',
   'Origin, X-Requested-With, Content-Type, Accept');
   res.setHeader('Access-Control-Allow-Methods',
-  'GET, POST, DELETE, PATCH, OPTIONS');
+  'GET, POST, DELETE, PATCH, PUT, OPTIONS');
   next();
 });
 
@@ -43,6 +43,17 @@ app.get('/items', (req, res, next) => {
     res.status(200).json({
       items: documents
     });
+  });
+});
+
+app.put('/items/:id', (req, res, next) => {
+  const item = new Item({
+    _id: req.body.id,
+    item: req.body.item,
+    expDate: req.body.expDate
+  });
+  Item.updateOne({_id: req.params.id }, item).then(result => {
+    res.status(200).json({message: 'updated item'});
   });
 });
 

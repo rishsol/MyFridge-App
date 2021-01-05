@@ -23,6 +23,7 @@ export class ItemsComponent implements OnInit {
   ngOnInit() {
     this.form = new Form();
     this.formData.push(this.form);
+    /*
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('itemId')) {
         this.mode = 'edit';
@@ -32,7 +33,8 @@ export class ItemsComponent implements OnInit {
         this.mode = 'create';
         this.itemId = null;
       }
-    })
+    });
+    */
   }
 
   addToFridge(form: NgForm) {
@@ -48,8 +50,8 @@ export class ItemsComponent implements OnInit {
     this.click = !this.click;
     //[disabled]='click'
     this.itemService.addItem(fridgeItems);
+      //this.itemService.updateItem(this.itemId, fridgeItems[i].item, fridgeItems[i].expDate);
     this.router.navigate(['/items'])
-
   }
   addForm() {
     this.form = new Form();
