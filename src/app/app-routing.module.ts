@@ -6,7 +6,8 @@ import { PostItemsComponent } from './post-items/post-items.component';
 
 const routes: Routes = [
   {path: 'items', component: PostItemsComponent},
-  {path: '', component: ItemsComponent}
+  {path: '', component: ItemsComponent},
+  {path: 'edit/:itemId', component: ItemsComponent}
 ];
 
 @NgModule({

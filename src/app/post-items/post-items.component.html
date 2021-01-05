@@ -6,7 +6,7 @@
   <tr *ngFor="let obj of allItems; let i = index">
       <td>{{ obj.item }} </td>
       <td>{{ obj.expDate }} </td>
-      <td> <button mat-button color='accent'> Edit </button> </td>
+      <td> <a mat-button color='accent' [routerLink]="['/edit', obj.id]"> Edit </a> </td>
       <td> <button mat-raised-button color='warn' (click)="deleteItem(obj.id, i)" #deleteButton>X</button> </td>
   </tr>
 </table>

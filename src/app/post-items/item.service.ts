@@ -34,6 +34,10 @@ export class ItemService {
     return this.itemsUpdated.asObservable();
   }
 
+  getItem(id: string) {
+    return {...this.items.find(i => i.id === id)};
+  }
+
   addItem(fridgeItems: Form[]) {
     this.http.post('http://localhost:3000/items', fridgeItems)
       .subscribe((responseData) => {
