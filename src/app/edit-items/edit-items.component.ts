@@ -9,12 +9,19 @@ import { ItemService } from "../post-items/item.service";
   styleUrls: ['./edit-items.component.css']
 })
 export class EditItemsComponent implements OnInit {
-  private itemId: string;
-  constructor (public itemService: ItemService, private router: Router, private route: ActivatedRoute) {}
+  itemId: string;
+  itemName: string;
+  itemExpDate: string;
+
+  constructor (public itemService: ItemService, private router: Router, private route: ActivatedRoute) {
+    this.itemName = this.route.snapshot.paramMap.get('itemName');
+    this.itemExpDate = this.route.snapshot.paramMap.get('itemExpDate');
+    console.log(this.itemExpDate);
+  }
 
   ngOnInit() {
-    (<HTMLInputElement>document.getElementById("itemInput")).defaultValue = this.route.snapshot.paramMap.get('itemName');
-    (<HTMLInputElement>document.getElementById("itemExpDate")).defaultValue = this.route.snapshot.paramMap.get('itemExpDate');
+    (<HTMLInputElement>document.getElementById("itemInput")).defaultValue = this.itemName;
+    (<HTMLInputElement>document.getElementById("itemExpDate")).defaultValue = this.itemExpDate;
     /*
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       (<HTMLInputElement>document.getElementById("itemInput")).defaultValue = paramMap.get('itemName');
