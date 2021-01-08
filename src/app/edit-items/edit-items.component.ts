@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { NgForm } from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { ItemService } from "../post-items/item.service";
 
@@ -12,33 +12,28 @@ export class EditItemsComponent implements OnInit {
   itemId: string;
   itemName: string;
   itemExpDate: string;
+  form: FormGroup;
 
-  constructor (public itemService: ItemService, private router: Router, private route: ActivatedRoute) {
-    this.itemName = this.route.snapshot.paramMap.get('itemName');
-    this.itemExpDate = this.route.snapshot.paramMap.get('itemExpDate');
-    console.log(this.itemExpDate);
-  }
+  constructor (public itemService: ItemService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    (<HTMLInputElement>document.getElementById("itemInput")).defaultValue = this.itemName;
-    (<HTMLInputElement>document.getElementById("itemExpDate")).defaultValue = this.itemExpDate;
-    /*
-    this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      (<HTMLInputElement>document.getElementById("itemInput")).defaultValue = paramMap.get('itemName');
-      (<HTMLInputElement>document.getElementById("itemExpDate")).defaultValue = paramMap.get('itemExpDate');
+    this.itemName = this.route.snapshot.paramMap.get('itemName');
+    this.itemExpDate = this.route.snapshot.paramMap.get('itemExpDate');
+    this.form = new FormGroup({
+      'item': new FormControl(this.itemName, {validators: [Validators.required]}),
+      'date': new FormControl(this.itemExpDate, {validators: [Validators.required]})
     });
-    */
   }
 
-  updateItem(form: NgForm) {
-    if (form.invalid) {
+  updateItem() {
+    if (this.form.invalid) {
       return;
     }
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('itemId')) {
         this.itemId = paramMap.get('itemId');
       }
-      this.itemService.updateItem(this.itemId, form.value.item, form.value.date);
+      this.itemService.updateItem(this.itemId, this.form.value.item, this.form.value.date);
     });
     this.itemService.getItems();
     this.router.navigate(['/items']);
