@@ -4,13 +4,13 @@
     <div class='form-row' *ngFor='let obj of formData; let i = index'>
       <div class='group'>
         <label> Item </label>
-        <input matInput type="text" name='item{{i}}' [(ngModel)]="obj.item" #item='ngModel' required class='form-control'>
+        <input type="text" [(ngModel)]="obj.item" name='item{{i}}' #item='ngModel' required class='form-control'>
         <mat-error *ngIf="item.invalid && item.touched">Add an Item</mat-error>
       </div>
 
       <div class='group'>
         <label> Expiration Date </label>
-        <input matInput type="date" name='expDate{{i}}' [(ngModel)]='obj.expDate' #date='ngModel' required class='form-control'>
+        <input type="date" [(ngModel)]='obj.expDate' name='expDate{{i}}' #date='ngModel' required class='form-control'>
         <mat-error *ngIf="date.invalid && date.touched">Add an Expiration Date</mat-error>
       </div>
 
@@ -22,3 +22,4 @@
     <button mat-raised-button type='submit' class='submit' color='primary' #submitButton> Submit </button>
   </div>
 </form>
+

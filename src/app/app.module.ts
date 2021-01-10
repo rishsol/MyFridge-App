@@ -10,8 +10,13 @@ import { HeaderComponent } from './header/header.component';
 import { EditItemsComponent } from './edit-items/edit-items.component';
 import { PostItemsComponent } from './post-items/post-items.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatInputModule} from '@angular/material/input';
+import { LoginComponent } from './auth/login/login.component';
+import { SignUpComponent } from './auth/signup/signup.component';
+import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +24,9 @@ import { HttpClientModule } from '@angular/common/http';
     ItemsComponent,
     HeaderComponent,
     PostItemsComponent,
-    EditItemsComponent
+    EditItemsComponent,
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +37,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     MatToolbarModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    MatFormFieldModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
