@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { NgForm } from "@angular/forms";
+import { AuthService } from '../auth.service';
 
 @Component({
   templateUrl: './signup.component.html',
@@ -7,7 +8,12 @@ import { NgForm } from "@angular/forms";
 })
 export class SignUpComponent {
 
+  constructor (public AuthService: AuthService) {}
+
   onSignUp(form: NgForm) {
-    console.log('hi');
+    if (form.invalid) {
+      return;
+    }
+    this.AuthService.addUser(form.value.email, form.value.password);
   }
 }

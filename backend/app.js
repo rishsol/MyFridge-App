@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/items', itemsRoutes);
-app.use('/signup', usersRoutes);
+app.use('/user', usersRoutes);
 
 
 module.exports = app;
