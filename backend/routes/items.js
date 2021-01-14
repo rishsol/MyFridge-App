@@ -1,8 +1,10 @@
 const express = require('express');
 const Item = require('../models/items');
+
+const checkAuth = require('../middleware/check-auth');
 const app = express.Router();
 
-app.post('', (req, res, next) => {
+app.post('', checkAuth, (req, res, next) => {
   const items = []
   for (let obj of req.body) {
     items.push(new Item({
@@ -24,7 +26,7 @@ app.get('', (req, res, next) => {
   });
 });
 
-app.put('/:id', (req, res, next) => {
+app.put('/:id', checkAuth, (req, res, next) => {
   const item = new Item({
     _id: req.body.id,
     item: req.body.item,
@@ -35,7 +37,7 @@ app.put('/:id', (req, res, next) => {
   });
 });
 
-app.delete('/:id', (req, res, next) => {
+app.delete('/:id', checkAuth, (req, res, next) => {
   Item.deleteOne({_id: req.params.id}).then(result => {
     console.log(result);
     res.status(200).json({ message: 'deleted item'});
