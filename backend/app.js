@@ -17,8 +17,6 @@ mongoose.connect('mongodb+srv://rishsol:Gb3tpm6uXjGs9fF@cluster0.lqzuy.mongodb.n
 
 app.use(bodyParser.json());
 
-//mongodb = Gb3tpm6uXjGs9fF;
-
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers',
