@@ -9,11 +9,16 @@ import { AuthData } from './auth-data.model';
 export class AuthService {
 
   private token: string;
+  private authStatusListener = new Subject<boolean>();
 
   constructor (private http: HttpClient) {}
 
   getToken() {
     return this.token;
+  }
+
+  getAuthStatusListener() {
+    return this.authStatusListener.asObservable();
   }
 
   addUser(email: string, password: string) {
@@ -30,6 +35,7 @@ export class AuthService {
       .subscribe(res => {
         const token = res.token;
         this.token = token;
+        this.authStatusListener.next(true);
       });
   }
 

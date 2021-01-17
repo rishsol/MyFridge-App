@@ -2,20 +2,26 @@
   <span> <a routerLink='/'> My Fridge </a></span>
   <span class="spacer"></span>
   <ul>
-    <li>
+    <li *ngIf="isAuthenticated">
       <a mat-button routerLink='/items'> View My Items</a>
     </li>
   </ul>
 
   <ul>
-    <li>
+    <li *ngIf="!isAuthenticated">
       <a mat-button routerLink='/login'> Login </a>
     </li>
   </ul>
 
   <ul>
-    <li>
+    <li *ngIf="!isAuthenticated" >
       <a mat-button routerLink='/signup'> Sign Up </a>
+    </li>
+  </ul>
+
+  <ul>
+    <li *ngIf="isAuthenticated">
+      <button mat-button> Logout </button>
     </li>
   </ul>
 
