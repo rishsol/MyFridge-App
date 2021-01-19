@@ -1,16 +1,16 @@
 <h2>Update your item </h2>
 <form [formGroup]="form" (submit)='updateItem()'>
-  <div class='container'>
-      <div class='group'>
+  <div>
+      <div>
         <label> Item </label>
-        <input matInput type="text" formControlName='item' id='itemInput' class='form-control'>
+        <input matInput type="text" formControlName='item' id='itemInput'>
         <mat-error *ngIf="form.get('item').invalid && form.get('item').touched">Update Item</mat-error>
       </div>
 
-      <div class='group'>
+      <div>
         <label> Expiration Date </label>
-        <input matInput type="date" formControlName='date' id='itemExpDate' class='form-control'>
-        <mat-error *ngIf="form.get('date').invalid && form.get('date').touched">Update Item</mat-error>
+        <input matInput type="date" formControlName='date' id='itemExpDate'>
+        <mat-error *ngIf="form.get('date').invalid && form.get('date').touched">Update Date</mat-error>
       </div>
     <button mat-raised-button type='submit' class='submit' color='primary' #submitButton> Update </button>
   </div>
