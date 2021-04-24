@@ -1,3 +1,4 @@
+MyFridge allows you to log grocery items and alerts you by email before they expire so you don't have to throw out neglected food in the back of your fridge.  
 # MyFridgeApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.1.
